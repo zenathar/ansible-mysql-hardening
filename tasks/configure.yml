@@ -6,6 +6,9 @@
 - name: ensure permissions on mysql-datadir are correct
   file: path='{{mysql_datadir}}' state=directory owner='{{mysql_hardening_user}}' group='{{mysql_hardening_user}}'
 
+- name: ensure permissions on mysql-logfile are correct
+  file: path='{{mysql_log_dir}}/{{mysql_log_file}}' state=file owner='{{mysql_hardening_user}}' group='{{mysql_hardening_user}}'
+
 - name: check mysql configuration-directory exists and has right permissions
   file: path='{{mysql_hardening_mysql_confd_dir}}' state=directory owner='{{mysql_hardening_user}}' group='{{mysql_hardening_group}}' mode=0570
 
