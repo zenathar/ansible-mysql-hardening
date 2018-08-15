@@ -4,27 +4,18 @@ services: docker
 env:
   - distro: centos6
     version: latest
-    run_opts: "--privileged"
     init: /sbin/init
 
   - distro: centos7
-    init: /usr/lib/systemd/systemd
+    init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     version: latest
 
   - distro: oracle6
     version: latest
-    run_opts: "--privileged"
     init: /sbin/init
 
-  - distro: oracle7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    version: latest
-
-# see https://github.com/dev-sec/mysql-baseline/issues/35
-#  - distro: ubuntu1604
-#    version: latest
+#  - distro: oracle7
 #    init: /lib/systemd/systemd
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
