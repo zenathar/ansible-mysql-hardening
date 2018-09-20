@@ -24,6 +24,7 @@ provisioner:
   requirements_path: requirements.yml
   sudo_command: 'sudo -E -H'
   playbook: tests/test.yml
+  galaxy_ignore_certs: true
 
 platforms:
 - name: centos6-ansible-latest
