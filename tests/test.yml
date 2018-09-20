@@ -3,10 +3,23 @@
 - name: wrapper playbook for kitchen testing "ansible-mysql-hardening"
   hosts: localhost
   pre_tasks:
-    - file: path="/etc/mysql" state=directory
+    - file:
+        path: "/etc/mysql"
+        state: directory
     - name: install procps for debian systems
-      apt: name=procps state=installed update_cache=yes
+      apt:
+        name: procps
+        state: installed
+        update_cache: yes
       when: ansible_distribution == 'Debian'
+    - name: set logfile according to OS
+      set_fact:
+        mysql_log_error: "/var/log/mysql.log"
+      when: ansible_os_family == "Debian"
+    - name: set logfile according to OS
+      set_fact:
+        mysql_log_error: "/var/log/mysqld.log"
+      when: ansible_os_family == "RedHat"
   vars:
     overwrite_global_mycnf: no
     mysql_root_password: iloverandompasswordsbutthiswilldo
